@@ -15,6 +15,7 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include
+from twitterusers.urls import urlpatterns as userpatterns
 # from twitter_clone.tweets.urls import urlpatterns as tweeturls
 
 
@@ -22,4 +23,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     # path('', include('tweets.urls'))
 ]
+urlpatterns += userpatterns
 # urlpatterns += tweeturls
