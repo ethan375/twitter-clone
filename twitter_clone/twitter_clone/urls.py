@@ -16,12 +16,15 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path, include
 from twitterusers.urls import urlpatterns as userpatterns
-# from twitter_clone.tweets.urls import urlpatterns as tweeturls
+from tweets.urls import urlpatterns as tweeturls
+from authentication.urls import urlpatterns as authurls
+from general.urls import urlpatterns as genurls
 
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    # path('', include('tweets.urls'))
+    path('admin/', admin.site.urls)
 ]
 urlpatterns += userpatterns
-# urlpatterns += tweeturls
+urlpatterns += tweeturls
+urlpatterns += authurls
+urlpatterns += genurls

@@ -30,8 +30,8 @@ def create_new_user(request):
         return render(request, 'users/new_user.html', context)
 
 
-    def login_user(request):
-        if request.method == 'POST':
-            pass
-        else:
-            
+def user_detail(request, user_id):
+    user = TwitterUser.objects.filter(id=user_id).first()
+    context = {'user': user}
+
+    return render(request, 'users/user_detail.html', context)

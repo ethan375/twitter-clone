@@ -1,0 +1,23 @@
+{% extends 'shared/base.html' %}
+{% include 'shared/nav_bar.html' %}
+
+{% block content %}
+
+    <div>
+        <p>{{ user.username }}</p>
+        
+        <h4>Tweets authored by this user</h4>
+
+        <div>
+        
+            {%for tweet in tweets%}
+                <div>
+                    <p>{{ tweet.body }}</p>
+                    <p>Likes: {{ tweet.likes }}</p>
+                </div>
+            {% endfor %}
+
+        </div>
+    </div>
+
+{% endblock %}

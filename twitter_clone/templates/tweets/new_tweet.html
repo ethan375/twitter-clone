@@ -1,0 +1,12 @@
+{% extends 'shared/base.html' %}
+
+{% block content %}
+
+    <form action="/tweet/new" method="POST">
+        <h4>New tweet details</h4>
+        {% csrf_token %}
+        {{ form.as_p }}
+        <input type="submit" value="Post new tweet">
+    </form>
+
+{% endblock %}
