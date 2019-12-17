@@ -1,4 +1,5 @@
 from django.shortcuts import render
+from tweets.models import Tweet
 from . models import TwitterUser
 from . forms import NewTwitterUser
 from django.contrib.auth.models import User 
@@ -32,6 +33,10 @@ def create_new_user(request):
 
 def user_detail(request, user_id):
     user = TwitterUser.objects.filter(id=user_id).first()
-    context = {'user': user}
+    tweets = Tweet.objects.filter(author=user.id)
+    context = {
+        'user': user,
+        'tweets': tweets
+        }
 
     return render(request, 'users/user_detail.html', context)
