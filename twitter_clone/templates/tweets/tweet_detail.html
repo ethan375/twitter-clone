@@ -1,11 +1,11 @@
 {% extends 'shared/base.html' %}
-
 {% block content %}
 
-    <div>
+    <div class="tweet">
         <p>{{ tweet.author.username }}</p>
         <p>{{ tweet.body }}</p>
         <p>likes: {{ tweet.likes }}</p>
+        <button>Like</button>
     </div>
 
 {% endblock %}

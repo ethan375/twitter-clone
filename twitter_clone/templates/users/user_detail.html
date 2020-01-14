@@ -5,13 +5,15 @@
 
     <div>
         <p>{{ user.username }}</p>
+
+        <a href="/user/follow/{{loggedin_user}}/{{user.id}}"> <button>Follow this person</button></a>
         
         <h4>Tweets authored by this user</h4>
 
         <div>
         
             {%for tweet in tweets%}
-                <div>
+                <div class="tweet">
                     <p>{{ tweet.body }}</p>
                     <p>Likes: {{ tweet.likes }}</p>
                 </div>

@@ -4,6 +4,8 @@
 
     <form action="/auth/login" method="POST">
     
+        <h4>Login:</h4>
+
         {% csrf_token %}
         {{ form.as_p }}
         <input type="submit" value="Login">

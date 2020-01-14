@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from tweets.models import Tweet
 from . models import TwitterUser
 from . forms import NewTwitterUser
@@ -23,7 +23,7 @@ def create_new_user(request):
                 user=user
             )
 
-            return render(request, 'placeholder.html')
+            return redirect('/')
     else:
         form = NewTwitterUser()
         context = {'form': form}
@@ -34,9 +34,22 @@ def create_new_user(request):
 def user_detail(request, user_id):
     user = TwitterUser.objects.filter(id=user_id).first()
     tweets = Tweet.objects.filter(author=user.id)
+
     context = {
         'user': user,
-        'tweets': tweets
+        'tweets': tweets,
         }
+    try:
+        context['loggedin_user'] = request.user.twitteruser.id
+    except:
+        print('some things like didnt work or something ')
 
     return render(request, 'users/user_detail.html', context)
+
+
+def follow_user(request, loggedin_user, following_user):
+    loggedin_user = TwitterUser.objects.filter(id=loggedin_user).first()
+    following_user = TwitterUser.objects.filter(id=following_user).first()
+
+    loggedin_user.following.add(following_user)
+    return redirect('/user/{}'.format(following_user.id))    
